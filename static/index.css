@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Nova+Mono&family=Seaweed+Script&family=Chakra+Petch:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Goldman&family=Nova+Mono&family=Outfit&family=Public+Sans&family=Seaweed+Script&family=Chakra+Petch:wght@300;400;500&display=swap');
+/* @import url('https://fonts.google.com/specimen/Outfit&familyPublic+Sans') */
 
-
-body {
+body, html {
     margin: 0px;
     padding: 0px;
     display: flex;
@@ -17,7 +17,7 @@ button {
     /*padding: 0;*/
     border: none;
     background: none;
-    font-family: 'Nova Mono', monospace;
+    font-family: 'Outfit', monospace;
     color: black;
     border-radius: 15%;
     text-align: center;
@@ -50,7 +50,19 @@ button:focus {
     outline: none;
 }
 
-footer{
+header {
+    /* background-color: #4D9C41; */
+    color: white;
+    position:fixed;
+    left:0px;
+    top:0px;
+    height:100px;
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+
+footer {
     position:fixed;
     left:0px;
     bottom:0px;
@@ -63,15 +75,15 @@ footer{
     justify-content: right;
 }
 
-#canvas{
+#canvas {
     position:absolute;
     left:0;
     top:0;
     z-index:-1;
 }
 
-h1{
-    font-family: 'Chakra Petch', sans-serif; 
+h1 {
+    font-family: 'Goldman', sans-serif; 
     font-weight: 500;
     /*'Major Mono Display', monospace;*/
     font-size: 40pt;
@@ -79,7 +91,7 @@ h1{
     z-index: 2;
 }
 
-h2{
+h2 {
     z-index: 2;
     opacity: 100%;
     font-size: 16pt;
@@ -87,7 +99,7 @@ h2{
     padding-left: 2%;
     padding-right: 2%;
     padding-bottom: 0%;
-    font-family: 'Chakra Petch', sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-weight: bold;
 }
 
@@ -99,7 +111,7 @@ h2{
     align-items: center;
 }
 
-.center{
+.dialog-box {
     width: 900px;
     height: 550px;
     border-radius: 25px;
@@ -110,25 +122,24 @@ h2{
     border: 2px solid #B08D57; 
     overflow: auto;  
     overflow-x: hidden;
-    overflow-y: hidden; 
+    overflow-y: hidden;
+    font-family: 'Public Sans', monospace;
 }
 
 .center-scenario{
     background: rgba(192, 192, 192, 0.80);
 }
 
-
-
 p{
     z-index: 2;
     opacity: 100%;
     padding: 2.5%;
     font-size: 16pt;
-    font-family: 'Chakra Petch', sans-serif;
+    font-family: 'Public Sans', monospace;
     font-weight: 300;
 }
 
-.sample {
+.career-logo-font-green {
 	font-size:4em;
 	text-align:center;
 	line-height:1em;
@@ -138,13 +149,22 @@ p{
 	-webkit-background-clip: text;
 }
 
+.career-logo-font-white {
+	font-size:4em;
+	text-align:center;
+	line-height:1em;
+	font-weight:bold;
+	color: white;
+	-webkit-background-clip: text;
+}
+
 .career-prompt{
-    font-family: 'Nova Mono', monospace;
+    font-family: 'Public Sans', monospace;
     font-size: 18pt;
 }
 
 .career-text{
-    font-family: 'Nova Mono', monospace;
+    font-family: 'Public Sans', monospace;
     font-size: 10pt;
     padding: 2%
 }
@@ -167,7 +187,7 @@ p{
     width: 400px;
     border: 0.75px solid #B08D57; 
     border-radius: 5px; 
-    font-family: 'Nova Mono', monospace;
+    font-family: 'Public Sans', monospace;
     font-size: 13pt;
     background-color: rgba(250, 249, 246, 0.5);
 }
@@ -206,6 +226,12 @@ p{
     left: 0px;
     right: 0px;
     margin-left: auto;
+}
+
+.font-logo-size{
+    max-height: 75%;
+    margin-top: 2em;
+    margin-bottom: 1em;
 }
 
 img{
@@ -253,6 +279,15 @@ img{
 									   from(#4D9C41),
 									   to(#19911D),
 									   color-stop(.6,#54DE5D))
+}
+
+#typing-effect {
+    font-size: 24px;
+    font-family: 'Arial', sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid black;
+    animation: blink-caret 0.75s step-end infinite;
 }
 
 /*loading screen*/
@@ -391,4 +426,9 @@ img{
     100% {
         transform: translate(100%, 100%);
     }
+}
+
+@keyframes blink-caret {
+    from { border-color: transparent; }
+    to { border-color: black; }
 }
