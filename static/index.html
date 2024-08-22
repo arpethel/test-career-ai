@@ -22,14 +22,15 @@
     </header>
 
     <div class="center-adjacent">
-        <div id="typing-effect"></div>
+        <div class="standard-margin" id="typing-effect"></div>
+        <div class="standard-margin center-adjacent">
+            <input class="standard-margin" title="user input" type="text" id="prompt" name="prompt"></input>
+            <button class="button submit-button" onclick="toggle(this);postCareer(prompt)">Lets Go!</button>
+        </div>
         <div class="dialog-box" id="prompt-center">
-            <!-- <div class="input-group">
-                <input title="user input" type="text" id="prompt" name="prompt"></input>
-                <button class="submit-button" onclick="toggle(this);postCareer(prompt)">Lets Go!</button>
-            </div> -->
-            <input title="user input" type="text" id="prompt" name="prompt"></input>
-            <button class="submit-button" onclick="toggle(this);postCareer(prompt)">Lets Go!</button>
+            
+            <!-- <input title="user input" type="text" id="prompt" name="prompt"></input>
+            <button class="submit-button" onclick="toggle(this);postCareer(prompt)">Lets Go!</button> -->
         </div>
         <div class="dialog-box center-scenario" id="game-center" style="display: none">
             <div class="scrollbar" id="style-15">
