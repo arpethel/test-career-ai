@@ -21,7 +21,7 @@ let toggle = button => {
     btnElement.style.display = "none";
   }
 
-  let gameElement = document.getElementById("boxes");
+  let gameElement = document.getElementById("loading-container");
   if (gameElement.style.display === "none") {
     gameElement.style.display = "block";
   } else {
@@ -37,7 +37,14 @@ let toggleDoneLoading = () => {
     gameElement.style.display = "none";
   }
 
-  let loadingElement = document.getElementById("boxes");
+  // let loadingElement = document.getElementById("boxes");
+  // if (loadingElement.style.display === "none") {
+  //   loadingElement.style.display = "block";
+  // } else {
+  //   loadingElement.style.display = "none";
+  // }
+
+  let loadingElement = document.getElementById("loading-container");
   if (loadingElement.style.display === "none") {
     loadingElement.style.display = "block";
   } else {
@@ -63,6 +70,7 @@ let toggleDoneLoading = () => {
 //send post requests
 let postCareer = async () => {
   var careerInput = document.getElementById("prompt");
+  displayPrompt();
   console.log("start")
   console.log(careerInput)
   try {
@@ -197,7 +205,13 @@ function updateOption(response_json, optionid, index) {
   optionText.textContent = opText;
 }
 
+function displayPrompt() {
+  const promptInput = document.getElementById('prompt');
+  const displayedPrompt = document.getElementById('displayedPrompt');  
+  const capitalizedPrompt = promptInput.value.toUpperCase()
 
+  displayedPrompt.textContent = capitalizedPrompt;
+}
 
 
 //For background particle effect
