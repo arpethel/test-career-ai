@@ -182,17 +182,17 @@ p{
     height: 30px;
 } */
 
-#prompt {
-    float: left;
+/* #prompt {
+    float: left; */
     /* margin-left: 5%; */
-    height: 50px;
+    /* height: 50px;
     width: 450px;
     border: 1px solid #9ec1cc; 
     border-radius: 25px; 
     font-family: 'Public Sans', monospace;
-    font-size: 13pt;
+    font-size: 13pt; */
     /* background-color: rgba(250, 249, 246, 0.5); */
-}
+/* } */
 
 #prompt:focus{
     outline: none !important;
@@ -286,6 +286,27 @@ img{
 .force-overflow
 {
 	max-height: 500px;
+}
+
+.inline-button-container {
+    display: flex;
+    align-items: center; /* This ensures vertical alignment if heights differ */
+}
+
+#prompt {
+    flex-grow: 1; /* Allows the input to grow and take up available space */
+    margin-right: 10px; /* Optional: adds some space between input and button */
+    height: 75px;
+    width: 450px;
+    border: 1px solid #9ec1cc; 
+    border-radius: 25px; 
+    font-family: 'Public Sans', monospace;
+    font-size: 13pt;
+}
+
+#speechButton {
+    flex-shrink: 0; /* Prevents the button from shrinking if the container is too small */
+    white-space: nowrap; /* Ensures the button text doesn't wrap */
 }
 
 #style-15::-webkit-scrollbar-track

@@ -6,6 +6,7 @@ from config import Config
 from modules.open_ai import OpenAI
 from modules.message_history import MessageHistory
 import time
+from speech_to_text import SpeechToText
 
 openai_instance = OpenAI(
     instance=Config.instance,
@@ -13,12 +14,13 @@ openai_instance = OpenAI(
     key=Config.apiKey
 )
 
+speech_to_text = SpeechToText()
+
 app = Flask(__name__)
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 message_history = MessageHistory()
-
 
 @app.route('/')
 def home():
@@ -89,6 +91,29 @@ def talk_to_openai(conversation_id, number_of_responses=1):
     except Exception as ex:
         print(f"An error occurred: {ex}")
         return jsonify(error=str(ex)), 500
+
+# @app.route('/start_recording', methods=['POST'])
+# def start_recording():
+#     speech_to_text.start_recording()
+#     return jsonify({"status": "recording started"})
+
+# @app.route('/stop_recording', methods=['POST'])
+# def stop_recording():
+#     speech_to_text.stop_recording_and_transcribe()
+#     response = speech_to_text.generate_response()
+#     return jsonify({
+#         "transcript": speech_to_text.transcript,
+#         "ai_response": response
+#     })
+
+@app.route('/process_speech', methods=['POST'])
+def process_speech():
+    data = request.json
+    transcript = data.get('transcript')
+    # Here you would typically process the transcript with your AI model
+    # For now, let's just return a simple response
+    ai_response = f"You said: {transcript}"
+    return jsonify({"ai_response": ai_response})
 
 @app.route('/ask', methods=['POST'])
 def build_model():

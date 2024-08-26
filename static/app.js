@@ -1,10 +1,124 @@
 let preprompt = "Assume the role of a game with extensive knowledge on career experiences, essential life skills, interactive fiction writing, and narrating life experiences through stories while I play the role of the player. Your task is to help me, a person with mental disabilities, by helping me gain useful career skillsets and essential life skills through different scenarios by creating an interactive story. Within your narrated stories, provide suitable names for characters, locations, groups and organizations, events, and items that are connected to the career that the player chooses. The game will begin with me providing a career of my choosing that I would like to pursue and you will then lead the game by providing various scenarios or experiences that I will experience within that career or career field.\nOnce I have provided my career title, you will provide one scenario per chat and each scenario teaches me a skill that I will need within the chosen career or an essential life skill. Some experiences can include, but are not limited to, role responsibilities within the chosen career, difficult conversations, financial literacy, and other work experiences.\nFor the scenario responses, provide three multiple-choice options around how I can react or respond to the scenario or experience that you provided. I will then choose one of the provided options and you will then provide an in-depth narrative that describes what will happen next in the story along with the next scenario and three new multiple-choice options that I can select from. Each game will be 10 scenarios long with a recap at the end that gives an overview of lessons learned."
 let conversationId = ""
 let promptTemplate = "User response: {0}\nNote: display your response in a stringify json for outcome, scenario, and options, where options is an array of strings"
+let recognition;
+let isListening = false;
+let speechInstance = null;
 
+// Speech Recognition
 
+function setupSpeechRecognition() {
+  if ('webkitSpeechRecognition' in window) {
+    recognition = new webkitSpeechRecognition();
+    recognition.continuous = true; // Keep listening even after interim results
+    recognition.interimResults = true; // Get interim results
 
-let TTsEnabled = false
+    recognition.onstart = function () {
+      console.log("Speech recognition service has started");
+      document.getElementById('speechButton').textContent = 'Stop';
+    };
+
+    recognition.onresult = function (event) {
+      let interimTranscript = '';
+      let finalTranscript = '';
+
+      for (let i = event.resultIndex; i < event.results.length; ++i) {
+        const transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          finalTranscript += transcript.endsWith('.') ? transcript.slice(0, -1) : transcript;
+        } else {
+          interimTranscript += transcript.endsWith('.') ? transcript.slice(0, -1) : transcript;
+        }
+      }
+
+      // Update the input field with interim results as they come in
+      document.getElementById('prompt').value = interimTranscript + finalTranscript;
+
+      // Optionally, if you want to keep track of final words for server sending or other uses
+      if (finalTranscript) {
+        sendTranscriptToServer(finalTranscript);
+      }
+    };
+
+    recognition.onerror = function (event) {
+      console.log('Error occurred in recognition: ' + event.error);
+    };
+
+    recognition.onend = function () {
+      console.log("Speech recognition service disconnected");
+      if (isListening) {
+        recognition.start(); // Try to reconnect if still supposed to be listening
+      } else {
+        document.getElementById('speechButton').textContent = 'Talk';
+      }
+    };
+  } else {
+    console.log("Speech Recognition Not Supported");
+    document.getElementById('speechButton').disabled = true;
+  }
+}
+
+function toggleSpeechRecognition() {
+  if (!isListening) {
+    if (!recognition) setupSpeechRecognition();
+    recognition.start();
+  } else {
+    recognition.stop();
+  }
+  isListening = !isListening;
+}
+
+function sendTranscriptToServer(transcript) {
+  fetch('/process_speech', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ transcript: transcript })
+  })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('aiResponse').innerText = data.ai_response;
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+// End Speech Recognition
+
+// Text to Speech
+
+function readAloud(id) {
+  const textElement = document.getElementById(id);
+  const text = textElement.innerText || textElement.textContent;
+
+  if ('speechSynthesis' in window) {
+    if (speechInstance && window.speechSynthesis.speaking) {
+      // If speech is ongoing, stop it
+      window.speechSynthesis.cancel();
+      speechInstance = null;
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    // Optional: Customize the voice, rate, pitch, etc.
+    // utterance.voice = speechSynthesis.getVoices().filter(voice => voice.name === 'YourPreferredVoiceName')[0];
+    // utterance.rate = 1; // Speed of speech
+
+    // Set an event for when speaking ends
+    utterance.onend = function (event) {
+      speechInstance = null;
+    };
+
+    // Speak the text
+    speechInstance = window.speechSynthesis.speak(utterance);
+  } else {
+    alert('Text-to-speech not supported in this browser.');
+  }
+}
+
+// End Text to Speech
+
+// let TTsEnabled = false
 //Toggle prompt and game divs
 let toggle = button => {
   let element = document.getElementById("prompt-center");
@@ -37,13 +151,6 @@ let toggleDoneLoading = () => {
     gameElement.style.display = "none";
   }
 
-  // let loadingElement = document.getElementById("boxes");
-  // if (loadingElement.style.display === "none") {
-  //   loadingElement.style.display = "block";
-  // } else {
-  //   loadingElement.style.display = "none";
-  // }
-
   let loadingElement = document.getElementById("loading-container");
   if (loadingElement.style.display === "none") {
     loadingElement.style.display = "block";
@@ -52,23 +159,11 @@ let toggleDoneLoading = () => {
   }
 }
 
-// let gameElement = document.getElementById("game-center");
-// if (gameElement.style.display === "none") {
-//   gameElement.style.display = "block";
-// } else {
-//   gameElement.style.display = "none";
-// }
-
-// let btnElement = document.getElementById("TTS");
-// if (btnElement.style.display === "none") {
-//   btnElement.style.display = "block";
-// } else {
-//   btnElement.style.display = "none";
-// }
-
-
 //send post requests
 let postCareer = async () => {
+  // Hide the speech button
+  document.getElementById('speechButton').style.display = 'none';
+
   var careerInput = document.getElementById("prompt");
   displayPrompt();
   console.log("start")
@@ -181,17 +276,6 @@ function refreshPage() {
   location.reload();
 }
 
-//This is the json_object we need to emulate with the backend parser
-// var response_json = {
-//   "outcome": "success",
-//   "scenario": "You have chosen to pursue a career as a Graphic Designer. Your first scenario involves creating a logo design for a local coffee shop. They want a design that reflects their brand and captures the essence of their coffee. How do you approach this task?",
-//   "options": [
-//     "Research the coffee shop's brand and target audience before starting the design.",
-//     "Start designing without any prior research.",
-//     "Ask the coffee shop owner for more information about their preferences and vision."
-//   ]
-// }
-
 function updateParagraph(response_json, paragraphID, mkey) {
 
   var optionText = document.getElementById(paragraphID);
@@ -207,7 +291,7 @@ function updateOption(response_json, optionid, index) {
 
 function displayPrompt() {
   const promptInput = document.getElementById('prompt');
-  const displayedPrompt = document.getElementById('displayedPrompt');  
+  const displayedPrompt = document.getElementById('displayedPrompt');
   const capitalizedPrompt = promptInput.value.toUpperCase()
 
   displayedPrompt.textContent = capitalizedPrompt;
@@ -285,13 +369,6 @@ function update() {
     let x = dots[i].x;
     let y = dots[i].y;
 
-
-    // draw updated circle
-
-    // c.beginPath();
-    // c.arc(x, y, r, 0, Math.PI*2, true);
-    // c.stroke();
-
     // draw its line to mouse
     let d = Math.sqrt((x - mx) * (x - mx) + (y - my) * (y - my));
     if (d < mouse_ol) {
@@ -304,7 +381,6 @@ function update() {
     }
 
     // draw lines with other dots
-    // for(let i=0; i<dots_num; i++) {
     for (let j = i + 1; j < dots_num; j++) {
       let x1 = dots[j].x;
       let y1 = dots[j].y;
@@ -326,4 +402,3 @@ function update() {
 init();
 
 requestAnimationFrame(update);
-

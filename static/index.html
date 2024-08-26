@@ -21,45 +21,59 @@
         <img src="./images/CareerCraft_logo_no_border_concept.png" alt="Career Craft logo">
     </header>
 
+
     <h1 class="career-choice" id="displayedPrompt"></h1>
-    
+
     <div class="center-adjacent">
-        <dotlottie-player
-            class="loading-container"
-            id="loading-container"
-            src="https://lottie.host/e14a2166-83dd-4dc0-b234-4b1ac247a6ee/GU7ZkjhQJL.json" 
-            background="transparent" 
-            speed="1" 
-            style="display: none"
-            loop 
-            autoplay>
+        <dotlottie-player class="loading-container" id="loading-container"
+            src="https://lottie.host/e14a2166-83dd-4dc0-b234-4b1ac247a6ee/GU7ZkjhQJL.json" background="transparent"
+            speed="1" style="display: none" loop autoplay>
         </dotlottie-player>
 
         <div class="center-adjacent fixed" id="prompt-center">
             <div class="standard-margin career-prompt m-1 p-1" id="typing-effect"></div>
             <div class="standard-margin center-adjacent">
-                <input class="standard-margin m-1" title="user input" type="text" id="prompt" name="prompt"></input>
-                <button class="button submit-button" onclick="toggle(this);postCareer(prompt)">Lets Go!</button>
+                <!-- <input class="standard-margin m-1" title="user input" type="text" id="prompt" name="prompt"></input> -->
+                <div class="inline-button-container">
+                    <input class="standard-margin m-1 p-1" title="user input" type="text" id="prompt" name="prompt">
+                    <button class="" id="speechButton" onclick="toggleSpeechRecognition()">Talk</button>
+                </div>
+                <button class="button" onclick="toggle(this);postCareer(prompt)">Lets Go!</button>
             </div>
-            
+
         </div>
-        
+
         <div class="dialog-box center-scenario" id="game-center" style="display: none">
-            
+
             <div class="scrollbar" id="style-15">
                 <div class="force-overflow"></div>
-                <h2>Outcome:</h2>
+                <div class="inline-button-container">
+                    <h2>Outcome:</h2>
+                    <button onclick="readAloud('outcome')">🔊</button>
+                </div>
                 <p id="outcome"></p>
-                <h2>Scenario:</h2>
+                <div class="inline-button-container">
+                    <h2>Scenario:</h2>
+                    <button onclick="readAloud('scenario')">🔊</button>
+                </div>
                 <p id="scenario"></p>
                 <div class="game-options" id="game-div">
-                    <button class="button submit-button" id="option1" onclick="postButton(1)">Option 1</button>
-                    <button class="button submit-button" id="option2" onclick="postButton(2)">Option 2</button>
-                    <button class="button submit-button" id="option3" onclick="postButton(3)">Option 3</button>
+                    <div class="inline-button-container">
+                        <button class="button" id="option1" onclick="postButton(1)">Option 1</button>
+                        <button onclick="readAloud('option1')">🔊</button>
+                    </div>
+                    <div class="inline-button-container">
+                        <button class="button" id="option2" onclick="postButton(2)">Option 2</button>
+                        <button onclick="readAloud('option2')">🔊</button>
+                    </div>
+                    <div class="inline-button-container">
+                        <button class="button" id="option3" onclick="postButton(3)">Option 3</button>
+                        <button onclick="readAloud('option3')">🔊</button>
+                    </div>
                 </div>
             </div>
         </div>
-        
+
         <div class="boxes dialog-box" id="loading-container" style="display: none">
             <div class="box">
                 <div></div>
@@ -85,15 +99,19 @@
                 <div></div>
                 <div></div>
             </div>
-            
+
         </div>
 
-        
+
     </div>
-    
-    <button class="button submit-button" id="TTS" onclick="refreshPage()" style="display: none">Want to try a Different Career?</button>
+
+    <button class="button" id="TTS" onclick="refreshPage()" style="display: none">Want to try a Different
+        Career?</button>
     <footer>
         <img class="logo-size" src="./images/CareerCraft_logo_font.png" alt="Career Craft logo">
+        <!-- <div style="display: flex; align-items: center; gap: 10px;">
+            <button id="speechButton" onclick="toggleSpeechRecognition()" class="button">Talk</button>
+        </div> -->
     </footer>
 
     <script>
@@ -111,10 +129,10 @@
 
         window.onload = function () {
             typeSentence();
-            document.getElementById('prompt').addEventListener('keypress', function(e) {
+            document.getElementById('prompt').addEventListener('keypress', function (e) {
                 if (e.key === 'Enter') {
                     e.preventDefault();
-                    document.querySelector('.submit-button').click();
+                    document.querySelector('.').click();
                 }
             });
         };
