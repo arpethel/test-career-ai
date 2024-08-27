@@ -37,7 +37,7 @@ button {
     color: #ffffff;
     text-align: center;
     /* background-image: linear-gradient(to right, #008d92, #54ded7); */
-    background-color:#455B5C;
+    background-color:#2B7299;
     transition: all .4s ease-out;
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
@@ -45,7 +45,7 @@ button {
 }
 
 .font-button {
-    color: #455B5C;
+    color: #2B7299;
 }
 
 .font-button:focus, .font-button:hover{
@@ -85,7 +85,7 @@ footer {
     bottom:0px;
     height:150px;
     width:100%;
-    background-color: #455b5c;
+    background-color: #2B7299;
     padding: 20px;
     margin-top: 2.5%;
     display: flex;
