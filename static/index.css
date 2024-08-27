@@ -14,34 +14,55 @@ body, html {
   }
 
 button {
-    margin: 2%;
-    padding: 0.5em 1em;
+    font-weight: bold;
+    font-size: 2em;
     border: none;
     border-radius:1cap;
     background: none;
     font-family: 'Outfit', monospace;
-    font-weight: bold;
-    font-size: 2em;
-    color: #ffffff;
     text-align: center;
-    background-image: linear-gradient(to right, #008d92, #54ded7);
-    transition: background-color .5s;
-    /* box-shadow: 0 4px 15px 0 rgba(144, 114, 68, 0.75); */
-    transition: all .4s ease-out;
-    -o-transition: all .4s ease-in-out;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
     cursor: pointer;
-    appearance: none;
 }
 
-button:focus, button:hover{
+.lets-go-button:focus, .lets-go-button:hover{
     background-image: linear-gradient(to right, #54ded7, #008d92);
     box-shadow: 0 2px 5px 0 #c2c2c2;
 }
 
-/* button:focus {
-    outline: none;
+.lets-go-button {
+    margin: 2%;
+    padding: 0.5em 1em;
+    font-weight: bold;
+    font-size: 2em;
+    color: #ffffff;
+    text-align: center;
+    /* background-image: linear-gradient(to right, #008d92, #54ded7); */
+    background-color:#455B5C;
+    transition: all .4s ease-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.font-button {
+    color: #455B5C;
+}
+
+.font-button:focus, .font-button:hover{
+    color: #3ea5a0;
+    border: 2px solid #83b5c4;
+    transition: color .5s;
+    transition: all .4s ease-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+/* .icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2%;
 } */
 
 header {
@@ -202,8 +223,8 @@ p{
 .game-options {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: left;
+    justify-content: left;
 }
 
 .optionBtn {
@@ -248,6 +269,11 @@ p{
     top: 30%;
 }
 
+.bottom {
+    position: fixed;
+    bottom: 200px;
+}
+
 .p-1 {
     padding: 1em;
 }
@@ -262,6 +288,26 @@ p{
 
 .m-2 {
     margin: 2em;
+}
+
+.pt-1 {
+    padding-top: 1em;
+}
+
+.pl-1 {
+    padding-left: 1em;
+}
+
+.pl-2 {
+    padding-left: 2em;
+}
+
+.pt-1 {
+    padding-top: 1em;
+}
+
+.pb-1 {
+    padding-bottom: 1em;
 }
 
 img{
