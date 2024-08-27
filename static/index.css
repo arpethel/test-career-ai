@@ -95,8 +95,10 @@ footer {
 #canvas {
     position:absolute;
     left:0;
-    top:0;
+    /* top:0; */
     z-index:-1;
+    width: 100vw;
+    height: calc(100vh - 300px);
 }
 
 h1 {
@@ -126,6 +128,7 @@ h2 {
     font-family: 'Public Sans', monospace;
     font-weight: bolder;
     padding: 2%;
+    color: #2B7299;
 }
 
 .standard-margin {
@@ -347,7 +350,7 @@ img{
     border: 1px solid #9ec1cc; 
     border-radius: 25px; 
     font-family: 'Public Sans', monospace;
-    font-size: 13pt;
+    font-size: 22pt;
 }
 
 #speechButton {

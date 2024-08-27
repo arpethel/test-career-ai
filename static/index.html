@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- <canvas id="canvas"></canvas> -->
 
 <head>
     <meta charset="UTF-8">
@@ -14,7 +15,7 @@
     <link rel="shortcut icon" href="./images/CareerCraft_logo_icon.png">
 </head>
 
-<canvas id="canvas"></canvas>
+
 
 <body>
     <header>
@@ -22,7 +23,7 @@
     </header>
 
 
-    <h1 class="career-choice font-button" id="displayedPrompt"></h1>
+    <h1 class="career-choice" id="displayedPrompt"></h1>
 
     <div class="center-adjacent">
         <dotlottie-player class="loading-container" id="loading-container"
@@ -33,7 +34,6 @@
         <div class="center-adjacent fixed" id="prompt-center">
             <div class="standard-margin career-prompt m-1 p-1" id="typing-effect"></div>
             <div class="standard-margin center-adjacent">
-                <!-- <input class="standard-margin m-1" title="user input" type="text" id="prompt" name="prompt"></input> -->
                 <div class="inline-button-container">
                     <input class="standard-margin m-1 p-1" title="user input" type="text" id="prompt" name="prompt">
                     <button class="font-button button" id="speechButton"

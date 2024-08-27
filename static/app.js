@@ -90,36 +90,37 @@ function sendTranscriptToServer(transcript) {
 function readAloud(id) {
   const textElement = document.getElementById(id);
   const text = textElement.innerText || textElement.textContent;
-
+  console.log("Before checking speaking:", window.speechSynthesis.speaking);
   if ('speechSynthesis' in window) {
+    console.log("Text to speech supported in this browser");
     if (speechInstance && window.speechSynthesis.speaking) {
-      // If speech is ongoing, stop it
+      console.log("Speech synthesis should be speaking");
+      // Stop the current speech
+      window.speechSynthesis.pause();
       window.speechSynthesis.cancel();
       speechInstance = null;
+      console.log("Speech synthesis should be canceled");
       return;
+    } else {
+      console.log("Speech synthesis is not speaking");
     }
 
     const utterance = new SpeechSynthesisUtterance(text);
-    // Optional: Customize the voice, rate, pitch, etc.
-    // utterance.voice = speechSynthesis.getVoices().filter(voice => voice.name === 'YourPreferredVoiceName')[0];
-    // utterance.rate = 1; // Speed of speech
-
-    // Set an event for when speaking ends
-    utterance.onend = function (event) {
+    utterance.onend = function () {
       speechInstance = null;
     };
 
-    // Speak the text
-    speechInstance = window.speechSynthesis.speak(utterance);
+    // Start new speech
+    speechInstance = utterance;
+    window.speechSynthesis.speak(utterance);
   } else {
     alert('Text-to-speech not supported in this browser.');
   }
-}
+  console.log("After checking speaking:", window.speechSynthesis.speaking);
 
+}
 // End Text to Speech
 
-// let TTsEnabled = false
-//Toggle prompt and game divs
 let toggle = button => {
   let element = document.getElementById("prompt-center");
   if (element.style.display === "none") {
@@ -372,7 +373,7 @@ function update() {
     // draw its line to mouse
     let d = Math.sqrt((x - mx) * (x - mx) + (y - my) * (y - my));
     if (d < mouse_ol) {
-      c.strokeStyle = `rgba(25, 145, 29, ${max_ms_opac * (mouse_ol - d) / mouse_ol})`;
+      c.strokeStyle = `rgba(173, 216, 230, ${max_ms_opac * (mouse_ol - d) / mouse_ol})`;
       c.lineWidth = 2;
       c.beginPath();
       c.moveTo(x, y);
@@ -386,13 +387,12 @@ function update() {
       let y1 = dots[j].y;
       let d = Math.sqrt((x1 - x) * (x1 - x) + (y1 - y) * (y1 - y));
       if (d < dots_ol) {
-        c.strokeStyle = `rgba(176, 141, 87, ${max_dots_opac * (dots_ol - d) / dots_ol})`;
+        c.strokeStyle = `rgba(144, 238, 144, ${max_dots_opac * (dots_ol - d) / dots_ol})`;
         c.lineWidth = 1;
         c.beginPath();
         c.moveTo(x1, y1);
         c.lineTo(x, y);
         c.stroke();
-        // }
       }
     }
   }
