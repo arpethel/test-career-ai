@@ -92,20 +92,6 @@ def talk_to_openai(conversation_id, number_of_responses=1):
         print(f"An error occurred: {ex}")
         return jsonify(error=str(ex)), 500
 
-# @app.route('/start_recording', methods=['POST'])
-# def start_recording():
-#     speech_to_text.start_recording()
-#     return jsonify({"status": "recording started"})
-
-# @app.route('/stop_recording', methods=['POST'])
-# def stop_recording():
-#     speech_to_text.stop_recording_and_transcribe()
-#     response = speech_to_text.generate_response()
-#     return jsonify({
-#         "transcript": speech_to_text.transcript,
-#         "ai_response": response
-#     })
-
 @app.route('/process_speech', methods=['POST'])
 def process_speech():
     data = request.json

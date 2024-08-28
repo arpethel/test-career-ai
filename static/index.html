@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv='cache-control' content='no-cache'>
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
@@ -15,13 +15,10 @@
     <link rel="shortcut icon" href="./images/CareerCraft_logo_icon.png">
 </head>
 
-
-
 <body>
     <header>
         <img src="./images/CareerCraft_logo_no_border_concept.png" alt="Career Craft logo">
     </header>
-
 
     <h1 class="career-choice" id="displayedPrompt"></h1>
 
@@ -50,18 +47,18 @@
                 <div class="force-overflow"></div>
                 <div class="inline-button-container">
                     <h2 class="pb-1">Outcome:</h2>
-                    <button class="button" onclick="readAloud('outcome')">🔊</button>
+                    <button onclick="readAloud('outcome')">🔊</button>
                 </div>
                 <p id="outcome"></p>
                 <div class="inline-button-container">
                     <h2 class="pb-1">Scenario:</h2>
-                    <button class="button" onclick="readAloud('scenario')">🔊</button>
+                    <button onclick="readAloud('scenario')">🔊</button>
                 </div>
                 <p id="scenario"></p>
                 <div class="game-options pl-1 pt-1" id="game-div">
                     <div class="inline-button-container pt-1">
                         <button class="font-button button" id="option1" onclick="postButton(1)">Option 1</button>
-                        <button class="button" onclick="readAloud('option1')">🔊</button>
+                        <button onclick="readAloud('option1')">🔊</button>
                     </div>
                     <div class="inline-button-container pt-1">
                         <button class="font-button button" id="option2" onclick="postButton(2)">Option 2</button>
@@ -79,7 +76,6 @@
     <div class="inline-button-container pt-1 bottom">
         <button class="font-button button" id="TTS" onclick="refreshPage()" style="display: none">Want to try a
             Different Career?</button>
-        <!-- <button id="TTS" onclick="readAloud('TTS')" style="display: none">🔊</button> -->
     </div>
 
     <footer>
@@ -88,7 +84,7 @@
 
     <script>
         const sentence = "Hi Adventurer! What career are we exploring today?";
-        const typingSpeed = 50; // Adjust typing speed (milliseconds)
+        const typingSpeed = 50; // Adjust typing speed (milliseconds); the lower the number, the faster the typing
 
         let index = 0;
         function typeSentence() {
@@ -104,7 +100,8 @@
             document.getElementById('prompt').addEventListener('keypress', function (e) {
                 if (e.key === 'Enter') {
                     e.preventDefault();
-                    document.querySelector('.').click();
+                    toggle(this);
+                    postCareer(prompt);
                 }
             });
         };

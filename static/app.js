@@ -1,4 +1,5 @@
-let preprompt = "Assume the role of a game with extensive knowledge on career experiences, essential life skills, interactive fiction writing, and narrating life experiences through stories while I play the role of the player. Your task is to help me, a person with mental disabilities, by helping me gain useful career skillsets and essential life skills through different scenarios by creating an interactive story. Within your narrated stories, provide suitable names for characters, locations, groups and organizations, events, and items that are connected to the career that the player chooses. The game will begin with me providing a career of my choosing that I would like to pursue and you will then lead the game by providing various scenarios or experiences that I will experience within that career or career field.\nOnce I have provided my career title, you will provide one scenario per chat and each scenario teaches me a skill that I will need within the chosen career or an essential life skill. Some experiences can include, but are not limited to, role responsibilities within the chosen career, difficult conversations, financial literacy, and other work experiences.\nFor the scenario responses, provide three bulleted multiple-choice options around how I can react or respond to the scenario or experience that you provided. I will then choose one of the provided options and you will then provide an in-depth narrative that describes what will happen next in the story along with the next scenario and three new bulleted multiple-choice options that I can select from. Each game will be 10 scenarios long with a recap at the end that gives an overview of lessons learned."
+// let preprompt = "Assume the role of a game with extensive knowledge on career experiences, essential life skills, interactive fiction writing, and narrating life experiences through stories while I play the role of the player. Your task is to help me, a person with mental disabilities, by helping me gain useful career skillsets and essential life skills through different scenarios by creating an interactive story. Within your narrated stories, provide suitable names for characters, locations, groups and organizations, events, and items that are connected to the career that the player chooses. The game will begin with me providing a career of my choosing that I would like to pursue and you will then lead the game by providing various scenarios or experiences that I will experience within that career or career field.\nOnce I have provided my career title, you will provide one scenario per chat and each scenario teaches me a skill that I will need within the chosen career or an essential life skill. Some experiences can include, but are not limited to, role responsibilities within the chosen career, difficult conversations, financial literacy, and other work experiences.\nFor the scenario responses, provide three bulleted multiple-choice options around how I can react or respond to the scenario or experience that you provided. I will then choose one of the provided options and you will then provide an in-depth narrative that describes what will happen next in the story along with the next scenario and three new bulleted multiple-choice options that I can select from. Each game will be 10 scenarios long with a recap at the end that gives an overview of lessons learned."
+let preprompt = "Assume the role of a game with expertise in career experiences, essential life skills, interactive fiction writing, and narrating life experiences. Your task is to help me, a person with mental disabilities, gain useful career skillsets and essential life skills through an interactive story. Within your stories, provide appropriate names for characters, locations, organizations, events, and items related to the chosen career. The game will begin when I provide a career title. You will then create one scenario per interaction, each teaching a relevant career skill or essential life skill. Scenarios may include role responsibilities, difficult conversations, financial literacy, or other work-related experiences. For each scenario: Provide three clearly bulleted multiple-choice options on how I can react or respond. Ensure that the options are formatted consistently, using simple bullet points ('-'). After I choose an option, respond with an in-depth narrative describing the consequences and introduce the next scenario with three new bulleted choices. The game will consist of 10 scenarios, with a final recap summarizing the lessons learned."
 let conversationId = ""
 let promptTemplate = "User response: {0}\nNote: display your response in a stringify json for outcome, scenario, and options, where options is an array of strings"
 let recognition;
@@ -268,11 +269,6 @@ let postButton = async (optionNum) => {
   }
 }
 
-let toggleTTS = () => {
-  //TTS logic here
-  TTsEnabled = True
-}
-
 function refreshPage() {
   location.reload();
 }
@@ -297,7 +293,6 @@ function displayPrompt() {
 
   displayedPrompt.textContent = capitalizedPrompt;
 }
-
 
 //For background particle effect
 var cnvs = document.getElementById("canvas");
