@@ -294,6 +294,43 @@ function displayPrompt() {
   displayedPrompt.textContent = capitalizedPrompt;
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  const darkModeToggle = document.getElementById('darkModeToggle');
+  const body = document.body;
+
+  // Function to toggle dark mode
+  function toggleDarkMode() {
+    body.classList.toggle('dark-mode');
+    // Optionally save the user's preference
+    localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+  }
+
+  // Add event listener to the toggle switch
+  darkModeToggle.addEventListener('change', toggleDarkMode);
+
+  // Check for saved theme preference on page load
+  const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+  const darkMode = localStorage.getItem('darkMode') === 'true' || (prefersDarkScheme.matches && localStorage.getItem('darkMode') !== 'false');
+
+  if (darkMode) {
+    body.classList.add('dark-mode');
+    darkModeToggle.checked = true;
+  }
+
+  // Listen for changes in system preferences
+  prefersDarkScheme.addEventListener('change', (mediaQuery) => {
+    if (!localStorage.getItem('darkMode')) {
+      if (mediaQuery.matches) {
+        body.classList.add('dark-mode');
+        darkModeToggle.checked = true;
+      } else {
+        body.classList.remove('dark-mode');
+        darkModeToggle.checked = false;
+      }
+    }
+  });
+});
+
 //For background particle effect
 var cnvs = document.getElementById("canvas");
 cnvs.width = window.innerWidth;
