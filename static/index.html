@@ -20,7 +20,7 @@
         <img src="./images/CareerCraft_logo_no_border_concept.png" alt="Career Craft logo">
     </header>
 
-    <label class="switch">
+    <label class="switch" title="light/dark mode toggle">
         <input type="checkbox" id="darkModeToggle">
         <span class="slider round"></span>
     </label>
@@ -38,10 +38,10 @@
             <div class="standard-margin center-adjacent">
                 <div class="inline-button-container">
                     <input class="standard-margin m-1 p-1" title="user input" type="text" id="prompt" name="prompt">
-                    <button class="font-button button" id="speechButton"
+                    <button class="font-button button" title="talk button" id="speechButton"
                         onclick="toggleSpeechRecognition()">Talk</button>
                 </div>
-                <button class="lets-go-button button" onclick="toggle(this);postCareer(prompt)">Lets Go!</button>
+                <button class="lets-go-button button" title="submit button" onclick="toggle(this);postCareer(prompt)">Lets Go!</button>
             </div>
 
         </div>

@@ -135,7 +135,7 @@ h2 {
     width: 1200px;
     height: 700px;
     border-radius: 25px;
-    background: rgba(223, 233, 250, 0.562);
+    background: none;
     z-index: 1;
     display: flex;
     overflow: auto;  
@@ -146,7 +146,9 @@ h2 {
 }
 
 .center-scenario{
-    background: rgba(245, 249, 250, 0.8);
+    background: white;
+    color: #2B7299;
+
 }
 
 p{
@@ -188,10 +190,10 @@ p{
     height: 45px
 }
 
-.optionBtn:active{
+/* .optionBtn:active{
     background: linear-gradient(to right, #009245, #4D9C41, #54DE5D);
     transition: all .5s ease-in;
-}
+} */
 
 .chatGPTResp {
     overflow: hidden;
@@ -345,7 +347,7 @@ img{
     left: 50%;
 }
 
-.boxes .box:nth-child(1) {
+/* .boxes .box:nth-child(1) {
     -webkit-transform: translate(100%, 0);
     transform: translate(100%, 0);
     -webkit-animation: box1 1s linear infinite;
@@ -406,7 +408,7 @@ img{
     top: 0;
     left: 0;
     --translateZ: -90px;
-}
+} */
 
 /* Switch styling */
 .switch {
@@ -449,7 +451,7 @@ img{
 }
 
 input:checked + .slider {
-    background-color: #2196F3;
+    background-color: #2B7299;
 }
 
 input:checked + .slider:before {
@@ -459,7 +461,7 @@ input:checked + .slider:before {
 /* Light Mode (default) */
 body {
     background-color: white;
-    color: black;
+    color: #2B7299;
     transition: background-color 0.3s, color 0.3s;
 }
 
