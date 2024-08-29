@@ -405,12 +405,13 @@ img {
 }
 
 #typing-effect {
-    font-size: 24px;
+    font-size: 40px;
     font-family: 'Arial', sans-serif;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     overflow: hidden;
     border-right: 2px solid black;
     animation: blink-caret 0.75s step-end infinite;
+    text-align: center;
 }
 
 /*loading screen*/
@@ -555,3 +556,5 @@ body.dark-mode {
 @media (max-width: 768px) {
     .container {
         grid-template-columns: 1fr;
+    }
+}
