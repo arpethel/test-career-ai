@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <script src="app.js"></script>
     <link rel="shortcut icon" href="./images/CareerCraft_logo_icon.png">
 </head>
+
 <body>
     <div class="container">
         <aside class="left-sidebar">
@@ -36,8 +38,16 @@
             </div>
         </aside>
         <main class="main-content">
-            <!-- <h1 class="career-choice" id="displayedPrompt"></h1> -->
             <div class="content-section">
+                <div id="detailsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+                    <div class="modal-content">
+                        <button id="closeModalBtn" aria-label="Close" class="close">&times;</button>
+                        <h2 id="modalTitle">Welcome to Our Site!</h2>
+                        <p>We're glad you're here. Explore our features and enjoy your stay!</p>
+                        <button id="gotItBtn">Got it!</button>
+                    </div>
+                </div>
+                
                 <dotlottie-player class="loading-container" id="loading-container"
                     src="https://lottie.host/e14a2166-83dd-4dc0-b234-4b1ac247a6ee/GU7ZkjhQJL.json"
                     background="transparent" speed="1" style="display: none" loop autoplay>
@@ -57,6 +67,7 @@
                 </div>
                 <div class="dialog-box center-scenario" id="game-center" style="display: none">
                     <div class="scrollbar" id="style-15">
+                        <button id="openModalBtn">Open Modal</button>
                         <h1 class="career-choice" id="displayedPrompt"></h1>
                         <div class="inline-button-container">
                             <h2 class="pb-1">Outcome:</h2>
@@ -137,4 +148,5 @@
     </script>
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
 </body>
+
 </html>

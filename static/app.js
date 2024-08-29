@@ -295,48 +295,54 @@ function displayPrompt() {
 }
 
 function setupModal() {
-  const modal = document.getElementById('welcomeModal');
+  const modal = document.getElementById('detailsModal');
   const openBtn = document.getElementById('openModalBtn');
   const closeBtn = document.getElementById('closeModalBtn');
+  const gotItBtn = document.getElementById('gotItBtn');
 
-  if (!modal || !openBtn || !closeBtn) {
-    console.error("Modal or buttons not found in DOM");
+  if (!modal || !openBtn || !closeBtn || !gotItBtn) {
+    console.error('Modal or buttons not found in DOM');
     return;
   }
 
-  modal.setAttribute('aria-hidden', 'true');
-  modal.setAttribute('role', 'dialog');
-  closeBtn.setAttribute('aria-label', 'Close');
-
+  // Function to open the modal
   function openModal() {
     modal.style.display = 'block';
+    // Trap focus inside the modal
     modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    closeBtn.focus();
+    modal.setAttribute('tabindex', '-1');
+    modal.focus();
   }
 
+  // Function to close the modal
   function closeModal() {
     modal.style.display = 'none';
     modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = 'auto';
-    openBtn.focus();
+    modal.removeAttribute('tabindex');
   }
 
+  // Event listeners
   openBtn.addEventListener('click', openModal);
   closeBtn.addEventListener('click', closeModal);
+  gotItBtn.addEventListener('click', closeModal);
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && modal.style.display === 'block') {
-      closeModal();
-    }
-  });
-
+  // Close modal if user clicks outside of it
   window.addEventListener('click', (event) => {
     if (event.target === modal) {
       closeModal();
     }
   });
+
+  // Accessibility: Close modal with Escape key
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.style.display === 'block') {
+      closeModal();
+    }
+  });
 }
+
+// Call the setup function when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', setupModal);
 
 function setupDarkMode() {
   const darkModeToggle = document.getElementById('darkModeToggle');
@@ -376,7 +382,6 @@ function setupDarkMode() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  setupModal();
   setupDarkMode();
 });
 
