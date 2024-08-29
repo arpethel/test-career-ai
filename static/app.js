@@ -130,7 +130,7 @@ let toggle = button => {
     element.style.display = "none";
   }
 
-  let btnElement = document.getElementById("TTS");
+  let btnElement = document.getElementById("RestartSearch");
   if (btnElement.style.display === "none") {
     btnElement.style.display = "block";
   } else {
@@ -294,7 +294,51 @@ function displayPrompt() {
   displayedPrompt.textContent = capitalizedPrompt;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function setupModal() {
+  const modal = document.getElementById('welcomeModal');
+  const openBtn = document.getElementById('openModalBtn');
+  const closeBtn = document.getElementById('closeModalBtn');
+
+  if (!modal || !openBtn || !closeBtn) {
+    console.error("Modal or buttons not found in DOM");
+    return;
+  }
+
+  modal.setAttribute('aria-hidden', 'true');
+  modal.setAttribute('role', 'dialog');
+  closeBtn.setAttribute('aria-label', 'Close');
+
+  function openModal() {
+    modal.style.display = 'block';
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = 'auto';
+    openBtn.focus();
+  }
+
+  openBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.style.display === 'block') {
+      closeModal();
+    }
+  });
+
+  window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+}
+
+function setupDarkMode() {
   const darkModeToggle = document.getElementById('darkModeToggle');
   const body = document.body;
 
@@ -329,6 +373,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  setupModal();
+  setupDarkMode();
 });
 
 //For background particle effect
