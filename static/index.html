@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +12,6 @@
     <script src="app.js"></script>
     <link rel="shortcut icon" href="./images/CareerCraft_logo_icon.png">
 </head>
-
 <body>
     <div class="container">
         <aside class="left-sidebar">
@@ -38,9 +36,8 @@
             </div>
         </aside>
         <main class="main-content">
-            <h1 class="career-choice" id="displayedPrompt"></h1>
+            <!-- <h1 class="career-choice" id="displayedPrompt"></h1> -->
             <div class="content-section">
-
                 <dotlottie-player class="loading-container" id="loading-container"
                     src="https://lottie.host/e14a2166-83dd-4dc0-b234-4b1ac247a6ee/GU7ZkjhQJL.json"
                     background="transparent" speed="1" style="display: none" loop autoplay>
@@ -59,9 +56,8 @@
                     </div>
                 </div>
                 <div class="dialog-box center-scenario" id="game-center" style="display: none">
-
                     <div class="scrollbar" id="style-15">
-                        <div class="force-overflow"></div>
+                        <h1 class="career-choice" id="displayedPrompt"></h1>
                         <div class="inline-button-container">
                             <h2 class="pb-1">Outcome:</h2>
                             <button onclick="readAloud('outcome')">🔊</button>
@@ -98,18 +94,16 @@
                 <input type="checkbox" id="darkModeToggle">
                 <span class="slider round"></span>
             </label> -->
-            <div class="inline-button-container pt-1 bottom">
+            <div class="bottom">
                 <button class="font-button button" id="RestartSearch" onclick="refreshPage()" style="display: none">Want
                     to
                     try a
                     Different Career?
                     <p class="small-text">Click here to start again</p>
                 </button>
-
             </div>
         </aside>
     </div>
-
     <footer>
         <div class="footer-images">
             <img src="./images/Microsoft.png" alt="Left Footer Image. Microsoft Logo." class="footer-image left">
@@ -117,7 +111,6 @@
                 alt="Right Footer Image. Career Craft Logo." class="footer-image right">
         </div>
     </footer>
-
     <script>
         const sentence = "Hi Adventurer! What career are we exploring today?";
         const typingSpeed = 50; // Adjust typing speed (milliseconds); the lower the number, the faster the typing
@@ -143,7 +136,5 @@
         };
     </script>
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-
 </body>
-
 </html>
