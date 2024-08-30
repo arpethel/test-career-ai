@@ -294,13 +294,21 @@ function displayPrompt() {
   displayedPrompt.textContent = capitalizedPrompt;
 }
 
+function getModalTitle() {
+  const promptInput = document.getElementById('prompt');
+  const modalTitle = document.getElementById('getModalTitle');
+
+  modalTitle.textContent = promptInput.value;
+}
+
 function setupModal() {
   const modal = document.getElementById('detailsModal');
   const openBtn = document.getElementById('openModalBtn');
   const closeBtn = document.getElementById('closeModalBtn');
   const gotItBtn = document.getElementById('gotItBtn');
+  const modalTitle = document.getElementById('displayedPrompt');
 
-  if (!modal || !openBtn || !closeBtn || !gotItBtn) {
+  if (!modal || !openBtn || !closeBtn || !gotItBtn || !modalTitle) {
     console.error('Modal or buttons not found in DOM');
     return;
   }

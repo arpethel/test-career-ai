@@ -2,9 +2,8 @@
 
 body,
 html {
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
+    max-height: 100vh;
+    overflow: auto;
 }
 
 .container {
@@ -20,7 +19,7 @@ html {
 .left-sidebar,
 .right-sidebar,
 .main-content {
-    height: 100%;
+    max-height: 100vh;
 }
 
 .left-sidebar {
@@ -60,7 +59,7 @@ html {
     padding: 70px;
     right: 0px;
     display: flex;
-    overflow-y: auto;
+    /* overflow-y: auto; */
 }
 
 .main-content {
@@ -81,18 +80,14 @@ html {
 /* Modal styling */
 .modal {
     display: none;
-    /* Hidden by default */
     position: fixed;
     z-index: 1;
-    /* Sit on top */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    /* Enable scroll if needed */
+    overflow: hidden;
     background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
     justify-content: center;
     align-items: center;
 }
@@ -100,11 +95,16 @@ html {
 .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
-    /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 50%;
+    width: 30%;
+    height: 60%;
+    overflow-y: auto;
     border-radius: 1cap;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    align-content: top;
+    justify-content: center;
+    align-items: center;
 }
 
 .close {
@@ -122,14 +122,20 @@ html {
     cursor: pointer;
 }
 
-/* Accessibility: Focus style for keyboard navigation */
 .modal-content:focus {
     outline: none;
 }
 
 .modal-content button:focus {
     outline: 2px solid #000;
-    /* Visible focus for keyboard users */
+}
+
+.sound-icon {
+    align-items: center;
+    padding-top: 5px;
+    margin: 5px;
+    max-width: 40px;
+    height: auto;
 }
 
 button {
@@ -164,7 +170,6 @@ button {
 
 .font-button {
     color: #2B7299;
-    text-align: left;
 }
 
 .font-button:focus,
@@ -176,6 +181,7 @@ button {
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
+    border-radius: 1cap;
 }
 
 header {
@@ -219,12 +225,10 @@ h2 {
     font-weight: bold;
 }
 
-.career-choice {
-    position: relative;
-    /* top: 1%; */
+.career-choice, .modalTitle {
     font-weight: bolder;
-    padding: 2%;
     color: #2B7299;
+    text-align: center;
 }
 
 .standard-margin {
@@ -325,12 +329,24 @@ p {
     height: auto;
 }
 
-.left {
+.margin-left {
     margin-left: 40px;
 }
 
-.right {
+.margin-right {
     margin-right: 40px;
+}
+
+.text-align-right {
+    text-align: right;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.text-align-center {
+    text-align: center;
 }
 
 .fixed {
@@ -390,6 +406,7 @@ img {
 .inline-button-container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 #prompt {
