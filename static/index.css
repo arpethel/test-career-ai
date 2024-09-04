@@ -202,7 +202,7 @@ footer {
     bottom: 0px;
     width: 100%;
     background-color: #2B7299;
-    padding: 20px 0;
+    padding: 10px 0;
 }
 
 h1 {
@@ -325,7 +325,7 @@ p {
 }
 
 .footer-image {
-    max-width: 400px;
+    max-width: 200px;
     height: auto;
 }
 
@@ -572,6 +572,7 @@ body.dark-mode {
     .main-content {
         grid-row: 2;
         height: auto;
+        overflow-y: auto;
     }
 
     .right-sidebar {
