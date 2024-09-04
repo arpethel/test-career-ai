@@ -17,18 +17,18 @@ html {
 }
 
 .left-sidebar,
-.right-sidebar,
-.main-content {
-    max-height: 100vh;
+.right-sidebar {
+    background-color: #F2F3F3;
+    padding: 70px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100vh;
+    font: 24px 'Public Sans', sans-serif;
 }
 
 .left-sidebar {
-    background-color: #F2F3F3;
-    padding: 70px;
     left: 0px;
-    display: flex;
-    flex-direction: column;
-    font: 24px 'Public Sans', sans-serif;
 }
 
 .sidebar-item {
@@ -55,11 +55,7 @@ html {
 }
 
 .right-sidebar {
-    background-color: #F2F3F3;
-    padding: 70px;
     right: 0px;
-    display: flex;
-    /* overflow-y: auto; */
 }
 
 .main-content {
@@ -68,13 +64,18 @@ html {
     gap: 20px;
     display: flex;
     align-items: top;
-    margin-top: 10%;
+    margin-top: 20px;
+    margin-bottom: 150px;
     justify-content: center;
+    overflow-y: auto;
+    max-height: 100vh;
+    padding: 20px;
 }
 
 .content-section {
     background-color: #fff;
     padding: 20px;
+    min-height: 100%;
 }
 
 /* Modal styling */
@@ -203,6 +204,7 @@ footer {
     width: 100%;
     background-color: #2B7299;
     padding: 10px 0;
+    z-index: 100;
 }
 
 h1 {
@@ -566,16 +568,18 @@ body.dark-mode {
     }
 
     .left-sidebar {
-        grid-row: 1;
+        /* grid-row: 1; */
+        display: none;
     }
 
     .main-content {
         grid-row: 2;
         height: auto;
-        overflow-y: auto;
+        /* overflow-y: auto; */
     }
 
     .right-sidebar {
-        grid-row: 3;
+        /* grid-row: 1; */
+        display: none;
     }
 }
